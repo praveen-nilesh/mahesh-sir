@@ -1,0 +1,9 @@
+---
+- hosts: web
+  tasks:
+    - name: check the uptime of machine
+      action: uptime
+      register: health 
+      become: yes
+
+    - debug: msg="{{ health.msg }}"

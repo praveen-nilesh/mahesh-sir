@@ -1,0 +1,14 @@
+---
+- hosts: web
+  tasks:
+    - name: "Add user"
+      command: "adduser pkumar"
+      become: yes
+
+    - name: "Set authorized key from file"
+      authorized_key:
+        user: pkumar
+        state: present
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+      become: yes
+...

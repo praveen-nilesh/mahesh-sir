@@ -1,0 +1,26 @@
+---
+- name : EXECUTE A DATE COMMAND ON LOCALHOST
+  hosts: localhost
+  tasks:
+    - name: Execute a date command
+      command: date
+
+    - name: execute a command uptime
+      command: uptime
+    - name: execute a command who are logged in
+      shell: cat /etc/passwd | wc -l
+      register: user_output
+
+    - debug: var=user_output
+
+    - debug: msg='There are total {{ user_output.stdout }} in my system'
+    - name : print password file
+      command: cat /etc/passwd
+      register: user_details
+
+    - debug: var=user_details
+
+    - name: Find root user
+      debug: msg='root user is present'
+      when: user_details.stdout.find('root') != -1
+...
