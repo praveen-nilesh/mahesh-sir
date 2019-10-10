@@ -1,11 +1,10 @@
 ---
 
-- name: "Install tomcat prerequisits"
-  yum: name={{ item }} state=latest
-  with_items:
-    - java-1.8.0-openjdk-devel.x86_64
-    - unzip
-
+#- name: "Install tomcat prerequisits"
+#  dnf: name={{ item }} state=latest
+#  with_items:
+#    - java-1.8.0-openjdk-devel.x86_64
+#    - unzip
 - stat: path=/usr/local/apache-tomcat-8.0.21
   register: tc
 
